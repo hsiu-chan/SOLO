@@ -1,3 +1,4 @@
+
 # model settings
 model = dict(
     type='SOLOv2',
@@ -17,7 +18,7 @@ model = dict(
         num_outs=5),
     bbox_head=dict(
         type='SOLOv2Head',
-        num_classes=81,
+        num_classes=12,
         in_channels=256,
         stacked_convs=2,
         seg_feat_channels=256,
@@ -56,8 +57,10 @@ test_cfg = dict(
     sigma=2.0,
     max_per_img=100)
 # dataset settings
-dataset_type = 'CocoDataset'
-data_root = 'data/coco/'
+
+dataset_type = 'SmileDataset'
+data_root = 'data/smile/'
+
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 train_pipeline = [
@@ -94,7 +97,7 @@ data = dict(
     workers_per_gpu=2,
     train=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/instances_train2017.json',
+        ann_file=data_root + 'train.json',
         img_prefix=data_root + 'train2017/',
         pipeline=train_pipeline),
     val=dict(
